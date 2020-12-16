@@ -170,7 +170,7 @@ const webpackConfig = {
 		'entry-gutenboarding': [ path.join( __dirname, 'landing', 'gutenboarding' ) ],
 	} ),
 	mode: isDevelopment ? 'development' : 'production',
-	devtool: process.env.SOURCEMAP || ( isDevelopment ? '#eval' : false ),
+	devtool: process.env.SOURCEMAP || ( isDevelopment ? 'eval' : false ),
 	output: {
 		path: path.join( outputDir, 'public', extraPath ),
 		pathinfo: false,
@@ -186,7 +186,7 @@ const webpackConfig = {
 		removeEmptyChunks: ! isDesktop,
 		splitChunks: {
 			chunks: 'all',
-			name: !! ( isDevelopment || shouldEmitStats ),
+			...( isDevelopment || shouldEmitStats ? {} : { name: false } ),
 			maxAsyncRequests: 20,
 			maxInitialRequests: 5,
 		},
@@ -287,6 +287,9 @@ const webpackConfig = {
 				// Alias calypso to ./client. This allows for smaller bundles, as it ensures that
 				// importing `./client/file.js` is the same thing than importing `calypso/file.js`
 				calypso: __dirname,
+
+				// Node polyfills
+				process: 'process/browser',
 			},
 			getAliasesForExtensions( {
 				extensionsDirectory: path.resolve( __dirname, 'extensions' ),
@@ -305,7 +308,7 @@ const webpackConfig = {
 			global: 'window',
 		} ),
 		new webpack.NormalModuleReplacementPlugin( /^path$/, 'path-browserify' ),
-		new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ),
+		new webpack.IgnorePlugin( { resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ } ),
 		...SassConfig.plugins( {
 			chunkFilename: cssChunkFilename,
 			filename: cssFilename,

@@ -2,13 +2,16 @@
 
 ## trunk
 
+## 7.0.0
+
+- Breaking: drop support for wepback 4
+- Added: support for webpack 5
+
 ## 6.5.0
 
 - Added `corejs`, `debug`, and `useBuiltIns` options to the `babel/default` preset.
 
 ## 6.4.0
-
-## 7.0.0 (Unreleased)
 
 - Added `--esm` and `--cjs` options to `copy-assets` and `transpile` to do only one kind of
   the build (ESM or CJS) instead of both that are done by default

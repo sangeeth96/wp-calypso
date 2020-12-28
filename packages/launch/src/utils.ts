@@ -36,11 +36,14 @@ export const getPlanProduct = ( plan: Plans.Plan, flow: string ): PlanProduct =>
 export type DomainProduct = {
 	meta: string;
 	product_id: number;
+	product_cost_display?: string;
 	extra: {
 		privacy_available: boolean;
 		privacy: boolean;
 		source: string;
+		registrar?: string;
 	};
+	product_slug?: string;
 };
 
 export const getDomainProduct = (

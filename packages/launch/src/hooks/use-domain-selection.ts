@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useDispatch, useSelect } from '@wordpress/data';
 import type { DomainSuggestions } from '@automattic/data-stores';
-import { mockDomainSuggestion, useDomainSuggestions } from '@automattic/domain-picker';
+import { mockDomainSuggestion, mockDomainSuggestionFromCart } from '@automattic/domain-picker';
 import type { ResponseCartProduct } from '@automattic/shopping-cart';
 
 /**
@@ -39,14 +39,7 @@ export function useDomainProductFromCart(): DomainProduct | undefined {
 
 export function useDomainSuggestionFromCart(): DomainSuggestions.DomainSuggestion | undefined {
 	const domainProductFromCart = useDomainProductFromCart();
-
-	const domainName = domainProductFromCart?.meta;
-
-	const domainSuggestion = useDomainSuggestions( domainName, 1, undefined, undefined, {
-		include_wordpressdotcom: false,
-		include_dotblogsubdomain: true,
-	} )?.allDomainSuggestions?.[ 0 ];
-
+	const domainSuggestion = mockDomainSuggestionFromCart( domainProductFromCart );
 	return domainSuggestion;
 }
 

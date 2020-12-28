@@ -21,11 +21,11 @@
 	},
 	"scripts": {},
 	"peerDependencies": {
-		"webpack": "^5.7.0"
+		"webpack": "^5.11.1"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.0",
-		"webpack": "^5.7.0"
+		"webpack": "^5.11.1"
 	},
 	"files": [
 		"index.js"

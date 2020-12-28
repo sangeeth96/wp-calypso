@@ -10,6 +10,7 @@ export type DomainProduct = {
 		privacy: boolean;
 		source: string;
 		registrar?: string;
+		is_hsts_required?: boolean;
 	};
 	product_slug?: string;
 };
@@ -47,5 +48,6 @@ export function mockDomainSuggestionFromCart(
 		cost: cartProduct.product_cost_display || '',
 		product_id: cartProduct.product_id,
 		product_slug: cartProduct.product_slug || '',
+		hsts_required: cartProduct.extra.is_hsts_required,
 	};
 }

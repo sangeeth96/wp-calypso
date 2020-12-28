@@ -5,7 +5,7 @@ export type DomainProduct = {
 	meta: string;
 	product_id: number;
 	product_cost_display?: string;
-	product_cost_display_with_zeros?: string;
+	product_cost_display_with_zeroes?: string;
 	extra: {
 		privacy_available: boolean;
 		privacy: boolean;
@@ -46,7 +46,7 @@ export function mockDomainSuggestionFromCart(
 		relevance: 1,
 		supports_privacy: cartProduct.extra.privacy_available,
 		vendor: cartProduct.extra.registrar || '',
-		cost: cartProduct.product_cost_display_with_zeros || '',
+		cost: cartProduct.product_cost_display_with_zeroes || '',
 		product_id: cartProduct.product_id,
 		product_slug: cartProduct.product_slug || '',
 		hsts_required: cartProduct.extra.is_hsts_required,

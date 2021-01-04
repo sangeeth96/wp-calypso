@@ -46,7 +46,7 @@
 		"history": "^5.0.0"
 	},
 	"peerDependencies": {
-		"react": "^16.8"
+		"react": "^17.0"
 	},
 	"private": true
 }

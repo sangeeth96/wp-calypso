@@ -29,6 +29,7 @@ import { getHomeLayout } from 'calypso/state/selectors/get-home-layout';
 import Primary from 'calypso/my-sites/customer-home/locations/primary';
 import Secondary from 'calypso/my-sites/customer-home/locations/secondary';
 import Tertiary from 'calypso/my-sites/customer-home/locations/tertiary';
+import { useI18n } from '@automattic/react-i18n';
 
 /**
  * Style dependencies
@@ -45,6 +46,19 @@ const Home = ( {
 	trackViewSiteAction,
 } ) => {
 	const translate = useTranslate();
+
+	/**
+	 * @todo Remove before merging.
+	 */
+	const { __, addFilter } = useI18n();
+
+	React.useEffect( () => {
+		setTimeout( () => {
+			addFilter( 'postTranslation', 'test', ( translation ) => {
+				return `Filter applied::${ translation }`;
+			} );
+		}, 5000 );
+	}, [] );
 
 	if ( ! canUserUseCustomerHome ) {
 		const title = translate( 'This page is not available on this site.' );
@@ -74,6 +88,7 @@ const Home = ( {
 
 	return (
 		<Main className="customer-home__main is-wide-layout">
+			{ __( 'Test placeholder string' ) }
 			<PageViewTracker path={ `/home/:site` } title={ translate( 'My Home' ) } />
 			<DocumentHead title={ translate( 'My Home' ) } />
 			{ siteId && <QuerySiteChecklist siteId={ siteId } /> }
